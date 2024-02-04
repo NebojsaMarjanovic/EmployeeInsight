@@ -1,0 +1,53 @@
+﻿@model EmployeeCatalogViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Work Hours Overview for Employees</h2>
+    @if (Model.Employees is null)
+    {
+        <p>There is no related data for employees.</p>
+    }
+    else
+    {
+        <table border="1">
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Total hours</th>
+                    <!-- Add more header columns if needed -->
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Employees)
+                {
+                    <tr style="background-color: @(item.Duration < 100 ? "#ffaaaa" : "")">
+                        <td>@item.Name</td>
+                        <td>@item.Duration</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</body>
+</html>
